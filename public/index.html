@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>City Tips</title>
+  <style>
+    body { font-family: Arial, sans-serif; }
+    ul { list-style-type: none; padding: 0; }
+    li { margin-bottom: 10px; }
+    button { margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <h1>City Tips</h1>
+  <button id="fetch-tips-btn">Fetch Tips</button>
+  <ul id="tips-list"></ul>
+  
+  <script>
+    document.getElementById('fetch-tips-btn').addEventListener('click', async () => {
+      const response = await fetch('/tips');
+      const tips = await response.json();
+
+      const tipsList = document.getElementById('tips-list');
+      tipsList.innerHTML = '';
+
+      for (const tip of tips) {
+        const li = document.createElement('li');
+        li.textContent = `${tip.title} (${tip.rating}): ${tip.description}`;
+        tipsList.appendChild(li);
+      }
+    });
+  </script>
+</body>
+</html>
