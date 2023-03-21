@@ -1,0 +1,18 @@
+{
+  "name": "city-tips-backend",
+  "version": "1.0.0",
+  "description": "Backend API for the City Tips SwiftUI app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "airtable": "^0.11.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.3"
+  },
+  "engines": {
+    "node": "16.x"
+  }
+}
