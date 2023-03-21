@@ -1,16 +1,9 @@
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server listening on port ${port}`));
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const Airtable = require('airtable');
 const axios = require('axios');
 const cors = require('cors');
 const path = require('path');
-
-const app = express();
-app.use(bodyParser.json());
-app.use(cors());
 
 const apiKey = 'keycaST0E770p7HWb';
 const baseId = 'appJYghlwwJ41QRkx';
