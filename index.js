@@ -1,8 +1,12 @@
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server listening on port ${port}`));
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const Airtable = require('airtable');
 const axios = require('axios');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 app.use(bodyParser.json());
@@ -12,6 +16,11 @@ const apiKey = 'keycaST0E770p7HWb';
 const baseId = 'appJYghlwwJ41QRkx';
 const tableName = 'Tips';
 const airtable = new Airtable({ apiKey }).base(baseId);
+
+const app = express();
+app.use(bodyParser.json());
+app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/tips', async (req, res) => {
   try {
@@ -23,4 +32,6 @@ app.get('/tips', async (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
