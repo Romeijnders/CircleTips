@@ -110,3 +110,25 @@ struct CityTipsApp: App {
         }
     }
 }
+
+class TipsViewModel: ObservableObject {
+    @Published var tips: [Tip] = []
+
+    func fetchTips() {
+        let url = "https://circletips.herokuapp.com//tips"
+        URLSession.shared.dataTask(with: URL(string: url)!) { data, response, error in
+            guard let data = data, error == nil else {
+                print("Error fetching tips: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            do {
+                let tips = try JSONDecoder().decode([Tip].self, from: data)
+                DispatchQueue.main.async {
+                    self.tips = tips
+                }
+            } catch {
+                print("Error decoding tips: \(error)")
+            }
+        }.resume()
+    }
+}
